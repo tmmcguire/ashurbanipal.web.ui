@@ -202,6 +202,7 @@
         right: function(event, target) { rotateRight(PG.style); },
     };
 
+    // Topic recommendations
     PG.topic = {
         url: 'data/file/topic',
         eltBase: 'topic',
@@ -229,6 +230,7 @@
 
     };
 
+    // Combined recommendations
     PG.combination = {
         url: 'data/file/combination',
         eltBase: 'combined',
@@ -293,7 +295,7 @@
         listeners: {
             'select': function(combo, record, index) {
                 if (record && record.data) {
-                    Ext.History.add(Ext.util.JSON.encode(record.data.etext_no));
+                    Ext.History.add(record.data.etext_no);
                 }
             },
         },
@@ -307,7 +309,7 @@
             if (PG.topic.transactionId) { Ext.Ajax.abort(PG.topic.transactionId); }
             if (PG.combination.transactionId) { Ext.Ajax.abort(PG.combination.transactionId); }
             if (token) {
-                selectBook(Ext.util.JSON.decode(token));
+                selectBook(token);
             } else {
                 PG.textSearchBox.setValue('');
             }
@@ -321,12 +323,12 @@
         Ext.get('combined-right').on('click', PG.combination.right);
         Ext.get('app').on('click', selectBookPage);
 
-        var token = Ext.util.JSON.decode( Ext.History.getToken() );
+        var token = Ext.History.getToken();
         if (token) {
             selectBook(token);
         }
 
         Ext.get('search').focus();
-    }
+    };
     
 }());
