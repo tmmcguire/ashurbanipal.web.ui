@@ -302,6 +302,8 @@
     });
 
     PG.start = function() {
+        var i;                  // An index variable
+        
         Ext.History.init();
         // Handle this change event in order to restore the UI to the appropriate history state
         Ext.History.on('change', function(token){
@@ -326,6 +328,60 @@
         var token = Ext.History.getToken();
         if (token) {
             selectBook(token);
+        }
+
+        var toolTipContents = [
+            {
+                target: 'title',
+                html: '<b>What, it\'s a title. You expect it to do something?</b>' +
+                    '<p>The data is taken from the Project Gutenberg 2010 DVD, limited to those texts which are in English.</p>',
+            },
+            {
+                target: 'book-selector',
+                html: '<p><b>The idea here is to</b> select a book or other text (that\'s fancy NLP speak) that you enjoy, ' +
+                    'and allow our text ferrets to identify other texts from the Project ' +
+                    'Gutenberg collection that you might also like.</p> ' +
+                    '<p>Type an author, title, or subject into the field, and select a text from the list. ' +
+                    'Then look to the right.</p>',
+            },
+            {
+                target: 'book-info',
+                html: '<p><b>When you have selected a book on the left,</b> there, our talented and frisky ferrets look up the information ' +
+                    'that Project Gutenberg has about the text (the <i>metadata</i> in NLP-talk) and displays it here.</p>' +
+                    '<p>The first line is the title, followed by the author or authors. Next is (possibly missing) information about the ' +
+                    'subject of the text and then the date on which the text was added to Project Gutenberg (which is admittedly not very useful). ' +
+                    'Finally, the last lines are the (possibly missing) Library of Congress information, the language the text is written in ' +
+                    '(English, for this set of data.), the copyright information, and the Project Gutenberg Etext number.</p> ' +
+                    '<p>Below that is a link to take you to the book\'s page on Project Gutenberg, where you can download a copy of the actual ' +
+                    'text, likely in several formats</p> ',
+            },
+            {
+                target: 'style-row',
+                html: '<p><b>Style recommendations are</b> a tricky subject. Currently, we are using the proportions of the various parts of speech ' +
+                    'used in the text, which does not seem to be any <i>worse</i> than any other stylometric approaches. But, watch this space for ' +
+                    'future improvements.</p> ' +
+                    '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
+                    'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
+            },
+            {
+                target: 'topic-row',
+                html: '<p><b>Topic recommendations are</b> a bit easier than dealing with text style. The current system uses the overlap between ' +
+                    'two text\'s most-frequent nouns. But, watch this space for future improvements.</p> ' +
+                    '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
+                    'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
+            },
+            {
+                target: 'combined-row',
+                html: '<p><b>The overall recommendations from this system</b> a combination of style and topic scores. But, as above, watch this space for future improvements.</p> ' +
+                    '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
+                    'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
+            },
+        ];
+        PG.toolTips = [];
+        for (i = 0; i < toolTipContents.length; i++) {
+            // Defaults
+            toolTipContents[i].dismissDelay = 0;
+            PG.toolTips.push( new Ext.ToolTip(toolTipContents[i]) );
         }
 
         Ext.get('search').focus();
