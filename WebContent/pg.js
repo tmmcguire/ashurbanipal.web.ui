@@ -258,6 +258,29 @@
 
     };
 
+    // ToolTip control
+    PG.toolTipControl = {
+        elt: Ext.get('tooltip-control'),
+        enabled: false,
+        disabledText: '<p>Enable Tips</p>',
+        enabledText: '<p>Disable Tips</p>',
+        handler: function(event, target) {
+            if (PG.toolTipControl.enabled) {
+                PG.toolTipControl.enabled = false;
+                for (var i = 0; i < PG.toolTips.length; ++i) {
+                    PG.toolTips[i].disable();
+                }
+                PG.toolTipControl.elt.dom.innerHTML = PG.toolTipControl.disabledText;
+            } else {
+                PG.toolTipControl.enabled = true;
+                for (var i = 0; i < PG.toolTips.length; ++i) {
+                    PG.toolTips[i].enable();
+                }
+                PG.toolTipControl.elt.dom.innerHTML = PG.toolTipControl.enabledText;
+            }
+        }
+    };
+
     var textStore = new Ext.data.Store({
         proxy: new Ext.data.HttpProxy({
             url: 'data/file/lookup',
@@ -318,13 +341,14 @@
         });
 
         var clickHandlers = [
-            ['style-left',     PG.style.left],
-            ['style-right',    PG.style.right],
-            ['topic-left',     PG.topic.left],
-            ['topic-right',    PG.topic.right],
-            ['combined-left',  PG.combination.left],
-            ['combined-right', PG.combination.right],
-            ['app',            selectBookPage],
+            ['style-left',      PG.style.left],
+            ['style-right',     PG.style.right],
+            ['topic-left',      PG.topic.left],
+            ['topic-right',     PG.topic.right],
+            ['combined-left',   PG.combination.left],
+            ['combined-right',  PG.combination.right],
+            ['app',             selectBookPage],
+            ['tooltip-control', PG.toolTipControl.handler],
         ];
         for (i = 0; i < clickHandlers.length; i++) {
             Ext.get(clickHandlers[i][0]).on('click', clickHandlers[i][1]);
@@ -365,22 +389,29 @@
                 html: '<p><b>Style recommendations are</b> a tricky subject. Currently, we are using the proportions of the various parts of speech ' +
                     'used in the text, which does not seem to be any <i>worse</i> than any other stylometric approaches. But, watch this space for ' +
                     'future improvements.</p> ' +
+                    '<p>The left and right arrows scroll the list of recommendations. Right is a lower score; left is higher.</p>' +
                     '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
                     'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
             },
             {
                 target: 'topic-row',
                 html: '<p><b>Topic recommendations are</b> a bit easier than dealing with text style. The current system uses the overlap between ' +
-                    'two text\'s most-frequent nouns. But, watch this space for future improvements.</p> ' +
+                    'two texts\' most-frequent nouns. But, watch this space for future improvements.</p> ' +
+                    '<p>The left and right arrows scroll the list of recommendations. Right is a lower score; left is higher.</p>' +
                     '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
                     'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
             },
             {
                 target: 'combined-row',
                 html: '<p><b>The overall recommendations from this system</b> a combination of style and topic scores. But, as above, watch this space for future improvements.</p> ' +
+                    '<p>The left and right arrows scroll the list of recommendations. Right is a lower score; left is higher.</p>' +
                     '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
                     'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
             },
+            {
+                target: 'tooltip-control',
+                html: '<p><b>Click me</b> to turn off these tips if they are getting in your way.</p>',
+            }
         ];
         PG.toolTips = [];
         for (i = 0; i < toolTipContents.length; i++) {
@@ -388,6 +419,8 @@
             toolTipContents[i].dismissDelay = 0;
             PG.toolTips.push( new Ext.ToolTip(toolTipContents[i]) );
         }
+
+        PG.toolTipControl.handler(undefined, undefined);
 
         Ext.get('search').focus();
     };
