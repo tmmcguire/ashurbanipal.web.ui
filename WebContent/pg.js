@@ -262,8 +262,8 @@
     PG.toolTipControl = {
         elt: Ext.get('tooltip-control'),
         enabled: false,
-        disabledText: '<p>Enable Tips</p>',
-        enabledText: '<p>Disable Tips</p>',
+        disabledText: '<p>Enable Help</p>',
+        enabledText: '<p>Disable Help</p>',
         handler: function(event, target) {
             if (PG.toolTipControl.enabled) {
                 PG.toolTipControl.enabled = false;
