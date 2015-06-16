@@ -316,14 +316,19 @@
                 PG.textSearchBox.setValue('');
             }
         });
-        
-        Ext.get('style-left').on('click', PG.style.left);
-        Ext.get('style-right').on('click', PG.style.right);
-        Ext.get('topic-left').on('click', PG.topic.left);
-        Ext.get('topic-right').on('click', PG.topic.right);
-        Ext.get('combined-left').on('click', PG.combination.left);
-        Ext.get('combined-right').on('click', PG.combination.right);
-        Ext.get('app').on('click', selectBookPage);
+
+        var clickHandlers = [
+            ['style-left',     PG.style.left],
+            ['style-right',    PG.style.right],
+            ['topic-left',     PG.topic.left],
+            ['topic-right',    PG.topic.right],
+            ['combined-left',  PG.combination.left],
+            ['combined-right', PG.combination.right],
+            ['app',            selectBookPage],
+        ];
+        for (i = 0; i < clickHandlers.length; i++) {
+            Ext.get(clickHandlers[i][0]).on('click', clickHandlers[i][1]);
+        }
 
         var token = Ext.History.getToken();
         if (token) {
