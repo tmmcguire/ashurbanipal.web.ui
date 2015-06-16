@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <!--
     -- ashurbanipal.web: Java Servlet-based interface to Ashurbanipal data
     -- Copyright 2015 Tommy M. McGuire
@@ -114,7 +114,7 @@
         <tr>
           <td colspan="3">
             <div id="book-selector">
-              <h3 style="margin-bottom:5px;">Title, Author, or Subject</h3>
+              <h3 style="margin-bottom:5px;"><label for="search">Title, Author, or Subject</label></h3>
               <input type="text" size="40" name="search" id="search" />
               <div class="fine-print">
                 Live search requires a minimum of 4 characters.
@@ -136,7 +136,7 @@
           </tr>
           <tr>
             <td>
-              <img class="arrow" id="style-left" src="left.svg" width="64" height="64">
+              <img class="arrow" id="style-left" src="left.svg" width="64" height="64" alt="style recommendations with a lower distance">
             </td>
             <td>
               <div id="style1" class="book"></div>
@@ -148,7 +148,7 @@
               <div id="style3" class="book"></div>
             </td>
             <td>
-              <img class="arrow" id="style-right" src="right.svg" width="64" height="64">
+              <img class="arrow" id="style-right" src="right.svg" width="64" height="64" alt="style recommendations with a higher distance">
             </td>
           </tr>
         </table>
@@ -163,7 +163,7 @@
           </tr>
           <tr>
             <td>
-              <img class="arrow" id="topic-left" src="left.svg" width="64" height="64">
+              <img class="arrow" id="topic-left" src="left.svg" width="64" height="64" alt="topic recommendations with a lower distance">
             </td>
             <td>
               <div id="topic1" class="book"></div>
@@ -175,7 +175,7 @@
               <div id="topic3" class="book"></div>
             </td>
             <td>
-              <img class="arrow" id="topic-right" src="right.svg" width="64" height="64">
+              <img class="arrow" id="topic-right" src="right.svg" width="64" height="64" alt="topic recommendations with a higher distance">
             </td>
           </tr>
         </table>
@@ -190,7 +190,7 @@
           </tr>
           <tr>
             <td>
-              <img class="arrow" id="combined-left" src="left.svg" width="64" height="64">
+              <img class="arrow" id="combined-left" src="left.svg" width="64" height="64" alt="combined recommendations with a lower distance">
             </td>
             <td>
               <div id="combined1" class="book"></div>
@@ -202,7 +202,7 @@
               <div id="combined3" class="book"></div>
             </td>
             <td>
-              <img class="arrow" id="combined-right" src="right.svg" width="64" height="64">
+              <img class="arrow" id="combined-right" src="right.svg" width="64" height="64" alt="combined recommendations with a higher distance">
             </td>
           </tr>
         </table>
