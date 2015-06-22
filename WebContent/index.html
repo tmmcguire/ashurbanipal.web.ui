@@ -70,10 +70,17 @@
         font: normal 14px/18px arial,tahoma,helvetica,sans-serif;
       }
 
+      div#about {
+        float: right;
+        font: normal 14px/18px arial,tahoma,helvetica,sans-serif;
+        padding: 10px;
+      }
+
       div#tooltip-control {
         float: right;
         cursor: pointer;
         font: normal 14px/18px arial,tahoma,helvetica,sans-serif;
+        padding: 10px;
       }
 
       div.x-tip p {
@@ -83,19 +90,31 @@
       table#app {
         align: center;
         border: solid black;
+        clear: both;
       }
 
       td {
         font: normal 11px/13px arial,tahoma,helvetica,sans-serif;
         vertical-align: top;
       }
+      
+      div.footer {
+        padding-top: 40px;
+      }
+
+      div.footer p {
+        font: normal 9px/11px arial,tahoma,helvetica,sans-serif;
+        text-indent: 0px;
+      }
     </style>
     <title>Project Gutenberg 2010 DVD</title>
   </head>
   <body>
-    <div class="app" id="app">
 
-      <div id="tooltip-control"></div>
+    <div id="tooltip-control"></div>
+    <div id="about"><a href="about.html">About</a></div>
+
+    <div class="app" id="app">
 
       <table>
         <tr>
@@ -208,6 +227,11 @@
         </table>
       </div>
 
+    </div>
+
+    <div class="footer">
+      <hr />
+      <p>Copyright © 2015 Tommy M. McGuire</p>
     </div>
 
     <!-- Fields required for history management -->
