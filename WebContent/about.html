@@ -66,13 +66,12 @@
 
     <h2>Style</h2>
 
-    <p>To produced the style recommendations, I tagged each word in
-      each text tagged with its part of speech, and calculated the
-      proportions of each part of speech in the text. Tagging was
-      handled with
+    <p>To produce the style recommendations, I tagged each word in
+      each text with its part-of-speech and calculated the proportions
+      of each part-of-speech in the text. Tagging was handled with
       the <a href="http://nlp.stanford.edu/software/tagger.shtml">Stanford
       Part-Of-Speech Tagger</a>. Each text is then represented by a
-      vector of the proportions of each part of speech. I use the
+      vector of the proportions of each part-of-speech. I use the
       Euclidian distance between the text chosen by the user and each
       of the remaining texts to calculate the recommendations, with a
       smaller distance being a stronger recommendation.</p>
