@@ -1,0 +1,120 @@
+<html lang="en">
+  <!--
+    -- ashurbanipal.web: Java Servlet-based interface to Ashurbanipal data
+    -- Copyright 2015 Tommy M. McGuire
+    -- 
+    -- This program is free software; you can redistribute it and/or modify
+    -- it under the terms of the GNU General Public License as published by
+    -- the Free Software Foundation; either version 2 of the License, or
+    -- (at your option) any later version.
+    -- 
+    -- This program is distributed in the hope that it will be useful,
+    -- but WITHOUT ANY WARRANTY; without even the implied warranty of
+    -- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    -- GNU General Public License for more details.
+    -- 
+    -- You should have received a copy of the GNU General Public License along
+    -- with this program; if not, write to the Free Software Foundation, Inc.,
+    -- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="http://cdn.sencha.com/ext/gpl/3.4.1.1/resources/css/ext-all.css" type="text/css" rel="stylesheet">
+    <link href="http://cdn.sencha.com/ext/gpl/3.4.1.1/resources/css/xtheme-gray.css" type="text/css" rel="stylesheet" />
+
+    <style type="text/css">
+      body {
+        width: 700px;
+        margin: 50px;
+      }
+
+      h1 {
+        text-align: center;
+        padding-bottom: 20px;
+      }
+
+      h2 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      p {
+        text-indent: 2em;
+      }
+
+      ul li {
+        list-style: circle inside;
+      }
+      
+      div.footer {
+        padding-top: 40px;
+      }
+
+      div.footer p {
+        font: normal 9px/11px arial,tahoma,helvetica,sans-serif;
+        text-indent: 0px;
+      }
+    </style>
+    <title>About this project</title>
+  </head>
+  <body>
+    <h1>About this project</h1>
+
+    <p>This system provides a text recommendation engine based on
+      natural-language processing and the data from the Project
+      Gutenberg 2010 DVD.</p>
+
+    <h2>Style</h2>
+
+    <p>To produced the style recommendations, I tagged each word in
+      each text tagged with its part of speech, and calculated the
+      proportions of each part of speech in the text. Tagging was
+      handled with
+      the <a href="http://nlp.stanford.edu/software/tagger.shtml">Stanford
+      Part-Of-Speech Tagger</a>. Each text is then represented by a
+      vector of the proportions of each part of speech. I use the
+      Euclidian distance between the text chosen by the user and each
+      of the remaining texts to calculate the recommendations, with a
+      smaller distance being a stronger recommendation.</p>
+
+    <h2>Topic</h2>
+
+    <p>Topic recommendations are also based on the part-of-speech
+      tagging: I collected the 200 most common nouns from each text
+      and assumed the set represents the topics in the text. The
+      recommendations are based on
+      the <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard
+      distance</a> between the sets of nouns for each text, with a
+      smaller Jaccard distance producing a stronger
+      recommendation.</p>
+
+    <h2>Combined recommendations</h2>
+
+    <p>The combined recommendation is produced by multiplying the
+      Euclidian distance computed by the style recommendation by the
+      Jaccard distance produced by the topic recommendation. Since the
+      Jaccard distance will always be between 0.0 and 1.0, with zero
+      being a perfect match and one indicating no overlap, this has
+      the effect of reducing the style distance values for those texts
+      which are topically similar.</p>
+
+    <h2>Software</h2>
+
+    <ul>
+      <li><a href="https://github.com/tmmcguire/ashurbanipal">ashurbanipal</a>
+        is the project used to tag the text and produce the raw data
+        sets. (Such as they are.)</li>
+      <li><a href="https://github.com/tmmcguire/ashurbanipal.web">ashurbanipal.web</a>
+        provides the web services used to identify the user's source
+        text and compute the recommendations.</li>
+      <li><a href="https://github.com/tmmcguire/ashurbanipal.web.ui">ashurbanipal.web.ui</a>
+        is the browser-side user interface for the project.</li>
+    </ul>
+
+    <div class="footer">
+      <hr />
+      <p>Copyright © 2015 Tommy M. McGuire</p>
+    </div>
+      
+  </body>
+</html>
