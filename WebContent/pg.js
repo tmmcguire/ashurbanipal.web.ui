@@ -368,7 +368,7 @@
         },
         {
             target: 'combined-row',
-            html: '<p><b>The overall recommendations from this system</b> a combination of style and topic scores. But, as above, watch this space for future improvements.</p> ' +
+            html: '<p><b>The overall recommendations from this system</b> are a combination of style and topic scores. But, as below, watch this space for future improvements.</p> ' +
                 '<p>The left and right arrows scroll the list of recommendations. Right is a lower score; left is higher.</p>' +
                 '<p>By the way, clicking on the title of a book will display the recommendations for that book, and the final line of information about ' +
                 'the book is the metric used by our recommendation engine (largely for our ferrets\' amusement).</p> ',
