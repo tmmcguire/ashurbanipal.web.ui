@@ -309,12 +309,10 @@
         loadingText: 'Searching...',
         width: 570,
         pageSize: 20,
-        hideTrigger: true,
         tpl: PG.text_tmpl,
         applyTo: 'search',
         itemSelector: 'div.search-item',
         valueField: 'etext_no',
-        forceSelection: true,
         listeners: {
             'select': function(combo, record, index) {
                 if (record && record.data) {
@@ -322,6 +320,7 @@
                 }
             },
         },
+        listEmptyText: '<span style="padding:5px; margin-top:10px;"><b>No matching records</b></span>',
     });
 
     var toolTipContents = [
